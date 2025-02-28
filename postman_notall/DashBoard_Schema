@@ -1,0 +1,149 @@
+query GetAllInfo {
+    getAllInfo(authorization: null, authType: null)
+}
+
+mutation UserBaned {
+    userBaned(authorization: null, authType: null, id: null) {
+        message
+    }
+    companyBaned(authorization: null, authType: null, id: null) {
+        message
+    }
+    companyApprove(authorization: null, authType: null, id: null) {
+        message
+        company {
+            _id
+            companyName
+            description
+            industry
+            address
+            numberOfEmployees
+            companyEmail
+            createdBy
+            HRs
+            bannedAt
+            deletedAt
+            approvedByAdmin
+            logo {
+                secure_url
+                public_id
+            }
+            coverPic {
+                secure_url
+                public_id
+            }
+        }
+    }
+}
+
+query GetAllInfo2 {
+    getAllInfo(authType: null, authorization: null) {
+        companies {
+            _id
+            companyName
+            description
+            industry
+            address
+            numberOfEmployees
+            companyEmail
+            createdBy
+            HRs
+            bannedAt
+            deletedAt
+            approvedByAdmin
+            logo {
+                secure_url
+                public_id
+            }
+            coverPic {
+                secure_url
+                public_id
+            }
+            legalAttachment {
+                secure_url
+                public_id
+            }
+        }
+        users {
+            _id
+            firstName
+            lastName
+            email
+            phone
+            gender
+            birthdate
+            role
+            isConfirmed
+            provider
+            deletedAt
+            coverPic {
+                secure_url
+            }
+            profilePic {
+                secure_url
+            }
+        }
+    }
+}
+
+mutation UserBaned2 {
+    userBaned(authorization: null, authType: null, id: null) {
+        message
+        user {
+            _id
+            firstName
+            lastName
+            email
+        }
+    }
+    companyBaned(authorization: null, authType: null, id: null) {
+        message
+        company {
+            _id
+            companyName
+            description
+            industry
+            address
+            numberOfEmployees
+            companyEmail
+            createdBy
+            HRs
+            bannedAt
+            deletedAt
+            approvedByAdmin
+            logo {
+                secure_url
+                public_id
+            }
+            coverPic {
+                secure_url
+                public_id
+            }
+        }
+    }
+    companyApprove(authorization: null, authType: null, id: null) {
+        message
+        company {
+            _id
+            companyName
+            description
+            industry
+            address
+            numberOfEmployees
+            companyEmail
+            createdBy
+            HRs
+            bannedAt
+            deletedAt
+            approvedByAdmin
+            logo {
+                secure_url
+                public_id
+            }
+            coverPic {
+                secure_url
+                public_id
+            }
+        }
+    }
+}

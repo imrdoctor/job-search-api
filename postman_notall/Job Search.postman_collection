@@ -1,0 +1,1438 @@
+{
+	"info": {
+		"_postman_id": "45af95a7-e0b7-422f-9614-2a3735cca29f",
+		"name": "Job Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39613056"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Mohamed\",\r\n    \"lastName\":\"mohamed\",\r\n    \"email\":\"testemail@gmail.com\",\r\n    \"password\":\"Aa##0012J\",\r\n    \"Repassword\":\"Aa##0012J\",\r\n    \"gender\":\"male\",\r\n    \"birthdate\":\"2/23/2000\",\r\n    \"phone\":\"01221010101\",\r\n    \"verfyType\":\"otp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "asd",
+								"value": "asd",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"testemail@gmail.com\",\r\n    \"password\":\"Aa##0012J\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirm OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"testemail@gmail.com\",\r\n    \"otp\":\"952136\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/confirmotp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"confirmotp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1+qElL/5wbFwZzbI18OsqPHQMZvWkz1OMJOuONkDcn2J+3/Tlrmao5bPhhXXJZErxIAVYubtnmJQYnRLhEXSPsviykOMeJb/D/pEUq18aXWtH0H3YNbfx6FOTywUjyfIQ7dxObYRoCpAavNJdMFlppQ1q3uL9bAstHQLucRpcbwe9VkkYtXp52JnOoyzXWfAA/rDM/WAF2mEyDrEwPM1AHPUoewm1dwiHNXOvgNKiUoAPSP+2FW1kd7S4nIBPgCTvW96VZ7JUpNfL/Shw9Y5B9RdjLkIkprENs=",
+								"type": "text"
+							},
+							{
+								"key": "authtype",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/refresh-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "re send active email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1/MAnuusTxFhFnsHRwlfxy7THn+j3t3SYhkJGRXo7d/4CcV0PWEx5JwdqwV/aM5nutDcq7VlQSZinep/VsOBmhU9VY+KtU5Kuu035nLPKIwdxg3kfv2fYbTdvTnQc5pOOTgqGAKqYGcp+VcBIOM5O4JKYfLd/Sx8Amc4w+yBOZN3feB6yR3FnXtXH2vok9ahnhA/yzl31288nehSvaN0iOOfVhFc5rpbuItTGb72wPgZxdMCMXTDBy8CmKz/Cj+EsVdlfQtWVcJMNQLu5GfIEfGVz/zE2bpkoPIjsGMZLfTrfze1ccu6tNvdwIDyLEHJaZgxwvYMc/DRQ==",
+								"type": "text"
+							},
+							{
+								"key": "authtype",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"verfyType\":\"otp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/send-active-email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"send-active-email"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "password",
+			"item": [
+				{
+					"name": "Forget Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"testemail@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/forget-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"forget-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget Password OTP Confirm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"testemail@gmail.com\",\r\n    \"otp\":\"595867\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/forget-password-otp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"forget-password-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX19qK4E27C84Cklbb6x+CUvvv7AY6/oqp/GCjy2PjUWeKu0xorBujs+8pspw0vKmT3ZA/yvSoCufT+MEgVZoHkhKeN84Du1ULyekjYh9WQXjdU668bkoGicOb2G1q99nmSMPYWMic6ZEv+RDkCMrWKKuCK7azouknZSrnKtexqVVmoMim0xGulvxO7zZE5ljgE0lDgt6ctVL3HPLdvoY8jZ3VL+/3lFG+ZaGQdtCPar/LKXF+afSdVPDYd4X3hdGnI4M1PWL/w/TFigBKBCjvjJR3nt4Rn+OR+xp+/X8VpOmd4KDupMcyZKQG6wakzjrCSo+9s2RGIOWOw==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"Aa#asd840$sdf\",\r\n    \"Repassword\":\"Aa#asd840$sdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "user info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authtype",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asd\":\"asd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/user-info",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"user-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user Id Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX19jvsELohIWyQeuZFXLy3vsnZfCBraPMT02KwQlqQlStj3rrKTl6YVQjR89BWgcIoxV+iaBIRaBYhrIjqIjlPrv/tA3luIT0elZuUbX1ybUZEYQv7u0weNce3UktlNgD0NqYx11XPAjaOLejYMehWGHrHISjczanSpXsSPgdIfQBkxwYylVSoUgiaFHppCrMoZJiLYa2p5m02lfy6BNXOePVBpDmtLtj3mgMmLeLTJaITMx+4FU+5p6Nnc9TWEWNuItPEGbMLK2BDAwJQYH/K9y9eAIuE8dy58LajFephH8kWner0kfz2xbzsKxxkDzKU7XPyuQReAOqA==",
+								"type": "text"
+							},
+							{
+								"key": "authtype",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/user-info/67baf639f4f90b53e46b76aa",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"user-info",
+								"67baf639f4f90b53e46b76aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update info",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX19jvsELohIWyQeuZFXLy3vsnZfCBraPMT02KwQlqQlStj3rrKTl6YVQjR89BWgcIoxV+iaBIRaBYhrIjqIjlPrv/tA3luIT0elZuUbX1ybUZEYQv7u0weNce3UktlNgD0NqYx11XPAjaOLejYMehWGHrHISjczanSpXsSPgdIfQBkxwYylVSoUgiaFHppCrMoZJiLYa2p5m02lfy6BNXOePVBpDmtLtj3mgMmLeLTJaITMx+4FU+5p6Nnc9TWEWNuItPEGbMLK2BDAwJQYH/K9y9eAIuE8dy58LajFephH8kWner0kfz2xbzsKxxkDzKU7XPyuQReAOqA==",
+								"type": "text"
+							},
+							{
+								"key": "authtype",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\":\"01223982735\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user id info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX19zQ99uUOFB8FwszU5Nxel+/NOCmQwF3ZbDf55Vn8T047hikRQPL+u2TFgaHaG514/8DJP8Tzt23p0IiMdTOaA6tWdEDaoubi0KGfMyF6lEtzBcn3E1zgt5qCtq5peVsefwMiTtyw1n9L1caw+/sUdn2//zKaBa7ghaQ1vwTj9mqmCgU9SfOOFuw73pPtNTSS+8WueFwF2aDKrKMi8Cbjej3723GN3OucRQc/thUMII8u+On4u+K/N8WjiXO2UUGmGvL95xN+GE9jJ3EDJnPqojbSCX2oPg2xB3/lvCgbNJWfTHxf4AoRSsJasv9wOn3OV8d/pxETOjlA==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asd\":\"asd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/user-info/67bc5c66440f2a3f67cd532e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"user-info",
+								"67bc5c66440f2a3f67cd532e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1+jXHXMfAGaTY6nAsmENelE8rWwjLRt4juShniOd6YEoR/if9c7eB2UzXEukS3ioRylT0n9d4Oko6hqtwqi9p+JfagcARSQd9zVTymsrMBo2E1YyJublPJ8rTuyFqywNxosAtX+JPrJ/rXbL+l5J31BFWz6FwsStf7UJtTXPHGILtLoAmBldW6eHWg2IrSzeeZRgInhDGcuQ271XoHmCFePOcC+k1DT7CzRXmmn48lCW6fcoHpGVe2pJTDb0PRUEy8SJJ+AS+N+P7FzQqBg41zZj9JDyHfM8K5V3xGszGgAEcPRxFU6p25DM1SM7TREn7ugWLnyGwNBBg==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"old\":\"AAa80945A#sdlgj\",\r\n    \"password\":\"Aa##0012J\",\r\n    \"Repassword\":\"Aa##0012J\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/update-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1+jXHXMfAGaTY6nAsmENelE8rWwjLRt4juShniOd6YEoR/if9c7eB2UzXEukS3ioRylT0n9d4Oko6hqtwqi9p+JfagcARSQd9zVTymsrMBo2E1YyJublPJ8rTuyFqywNxosAtX+JPrJ/rXbL+l5J31BFWz6FwsStf7UJtTXPHGILtLoAmBldW6eHWg2IrSzeeZRgInhDGcuQ271XoHmCFePOcC+k1DT7CzRXmmn48lCW6fcoHpGVe2pJTDb0PRUEy8SJJ+AS+N+P7FzQqBg41zZj9JDyHfM8K5V3xGszGgAEcPRxFU6p25DM1SM7TREn7ugWLnyGwNBBg==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"old\":\"AAa80945A#sdlgj\",\r\n    \"password\":\"Aa##0012J\",\r\n    \"Repassword\":\"Aa##0012J\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change avatar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/E:/myfiles/لو فاتح شير لا تدش/بببببصور/صورة واتساب بتاريخ 1445-11-22 في 23.28.36_edb90210 - Copy.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/change-avatar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"change-avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change cover",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cover",
+									"type": "file",
+									"src": "/E:/myfiles/لو فاتح شير لا تدش/بببببصور/myphoto.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/change-cover",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"change-cover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete avatar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1+jXHXMfAGaTY6nAsmENelE8rWwjLRt4juShniOd6YEoR/if9c7eB2UzXEukS3ioRylT0n9d4Oko6hqtwqi9p+JfagcARSQd9zVTymsrMBo2E1YyJublPJ8rTuyFqywNxosAtX+JPrJ/rXbL+l5J31BFWz6FwsStf7UJtTXPHGILtLoAmBldW6eHWg2IrSzeeZRgInhDGcuQ271XoHmCFePOcC+k1DT7CzRXmmn48lCW6fcoHpGVe2pJTDb0PRUEy8SJJ+AS+N+P7FzQqBg41zZj9JDyHfM8K5V3xGszGgAEcPRxFU6p25DM1SM7TREn7ugWLnyGwNBBg==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asd\":\"asd\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/delete-avatar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"delete-avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete cover",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1+jXHXMfAGaTY6nAsmENelE8rWwjLRt4juShniOd6YEoR/if9c7eB2UzXEukS3ioRylT0n9d4Oko6hqtwqi9p+JfagcARSQd9zVTymsrMBo2E1YyJublPJ8rTuyFqywNxosAtX+JPrJ/rXbL+l5J31BFWz6FwsStf7UJtTXPHGILtLoAmBldW6eHWg2IrSzeeZRgInhDGcuQ271XoHmCFePOcC+k1DT7CzRXmmn48lCW6fcoHpGVe2pJTDb0PRUEy8SJJ+AS+N+P7FzQqBg41zZj9JDyHfM8K5V3xGszGgAEcPRxFU6p25DM1SM7TREn7ugWLnyGwNBBg==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Bearer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asd\":\"asd\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/delete-cover",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"delete-cover"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "add company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\": \"Tech Solutions\",\r\n    \"description\": \"A leading software development company providing innovative solutions.\",\r\n    \"industry\": \"Information Technology\",\r\n    \"address\": \"1234 Tech Street, Silicon Valley, CA, USA\",\r\n    \"numberOfEmployees\": \"11-20\",\r\n    \"companyEmail\": \"contactat@techsolutions.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/add-company",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"add-company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Company",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\":\"Route egypttsss\",\r\n    \"industry\":\"IT , PROGRAMMING\",\r\n    \"address\":\"Alexandria Online\",\r\n    \"description\":\"work and work\",\r\n    \"numberOfEmployees\":\"1-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/update-company/67c1059d6a9e0ec66f4b61c4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"update-company",
+								"67c1059d6a9e0ec66f4b61c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete company",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/company/delete-company/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"delete-company",
+								"67be30b6639f06ccd82fcffc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search company",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/company/search-company/r",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"search-company",
+								"r"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search company Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/get-company/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"get-company",
+								"67be30b6639f06ccd82fcffc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change logo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/E:/myfiles/لو فاتح شير لا تدش/بببببصور/myphoto.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/change-logo/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"change-logo",
+								"67be30b6639f06ccd82fcffc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change cover",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cover",
+									"type": "file",
+									"src": "/E:/myfiles/لو فاتح شير لا تدش/بببببصور/صورة واتساب بتاريخ 1445-11-22 في 23.28.36_edb90210 - Copy.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/change-cover/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"change-cover",
+								"67be30b6639f06ccd82fcffc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove logo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/remove-logo/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"remove-logo",
+								"67be30b6639f06ccd82fcffc"
+							],
+							"query": [
+								{
+									"key": "authorization",
+									"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove logo Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/remove-cover/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"remove-cover",
+								"67be30b6639f06ccd82fcffc"
+							],
+							"query": [
+								{
+									"key": "authorization",
+									"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add hr",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\":\"67bf3e289640e506891d6979\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/add-hr/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"add-hr",
+								"67be30b6639f06ccd82fcffc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove hr",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\":\"67bf442b9640e506891d698d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/remove-hr/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"remove-hr",
+								"67be30b6639f06ccd82fcffc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload legal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachement",
+									"type": "file",
+									"src": "/E:/myfiles/لو فاتح شير لا تدش/بببببصور/صورة واتساب بتاريخ 1445-11-22 في 23.28.36_edb90210 - Copy.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/company/upload-legal/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"upload-legal",
+								"67be30b6639f06ccd82fcffc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "add job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\": \"Red Hacker\",\r\n    \"jobLocation\": \"onsite\",\r\n    \"workingTime\": \"full-time\",\r\n    \"seniorityLevel\": \"Mid-Level\",\r\n    \"jobDescription\": \"Develop and maintain web applications with a focus on performance and scalability.\",\r\n    \"technicalSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\"],\r\n    \"softSkills\": [\"Communication\", \"Problem-Solving\", \"Teamwork\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job/add-job/67be30b6639f06ccd82fcffc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job",
+								"add-job",
+								"67be30b6639f06ccd82fcffc"
+							],
+							"query": [
+								{
+									"key": "authorization",
+									"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\": \"Software Engineera \",\r\n    \"jobLocation\": \"onsite\",\r\n    \"workingTime\": \"full-time\",\r\n    \"seniorityLevel\": \"Mid-Level\",\r\n    \"jobDescription\": \"Develop and maintain web applications with a focus on performance and scalability.\",\r\n    \"technicalSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\"],\r\n    \"softSkills\": [\"Communication\", \"Problem-Solving\", \"Teamwork\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job/update-job/67bf515ed131b6582a60eb65",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job",
+								"update-job",
+								"67bf515ed131b6582a60eb65"
+							],
+							"query": [
+								{
+									"key": "authorization",
+									"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\": \"Software Engineera \",\r\n    \"jobLocation\": \"onsite\",\r\n    \"workingTime\": \"full-time\",\r\n    \"seniorityLevel\": \"Mid-Level\",\r\n    \"jobDescription\": \"Develop and maintain web applications with a focus on performance and scalability.\",\r\n    \"technicalSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\"],\r\n    \"softSkills\": [\"Communication\", \"Problem-Solving\", \"Teamwork\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job/delete-job/67bf515ed131b6582a60eb65",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job",
+								"delete-job",
+								"67bf515ed131b6582a60eb65"
+							],
+							"query": [
+								{
+									"key": "authorization",
+									"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\": \"Software Engineera \",\r\n    \"jobLocation\": \"onsite\",\r\n    \"workingTime\": \"full-time\",\r\n    \"seniorityLevel\": \"Mid-Level\",\r\n    \"jobDescription\": \"Develop and maintain web applications with a focus on performance and scalability.\",\r\n    \"technicalSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\"],\r\n    \"softSkills\": [\"Communication\", \"Problem-Solving\", \"Teamwork\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job/get-job?page=1&limit=3&sort=createdAt&companyName=ro",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job",
+								"get-job"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt"
+								},
+								{
+									"key": "companyName",
+									"value": "ro"
+								},
+								{
+									"key": "companyId",
+									"value": "67be30b6639f06ccd82fcffc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\": \"Software Engineera \",\r\n    \"jobLocation\": \"onsite\",\r\n    \"workingTime\": \"full-time\",\r\n    \"seniorityLevel\": \"Mid-Level\",\r\n    \"jobDescription\": \"Develop and maintain web applications with a focus on performance and scalability.\",\r\n    \"technicalSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\"],\r\n    \"softSkills\": [\"Communication\", \"Problem-Solving\", \"Teamwork\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job/filter-job?technicalSkills=React",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job",
+								"filter-job"
+							],
+							"query": [
+								{
+									"key": "technicalSkills",
+									"value": "React"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "applay job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cv",
+									"type": "file",
+									"src": "/E:/myfiles/لو فاتح شير لا تدش/بببببصور/صورة واتساب بتاريخ 1445-11-22 في 23.28.36_edb90210 - Copy.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job/applay-job/67c1fcaf185a405f90858d42",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job",
+								"applay-job",
+								"67c1fcaf185a405f90858d42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "interaction applay",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "U2FsdGVkX1843rJjnCuSgl138zSedFjXuOuwmTreK+Xk5KdDLMEkyGkOzZ+ApLaMG0d2uJF7jjiIM8/DHrAfYmusT++1IJ/Ws6kRXLgpyk1+dH6uR8nFFibHAaTvrALSRgxumeA54COeq0w8DgZZg8GCTnkqETyTINqWzccBheVkBDaupl0NlbzwFMKpvz/764x+WBfvLbcwcth7B0fRhCQ2vrUwyguf/ukIMyQp+5IK5Wp1a7c0cyvg/okDNfPrpwFjZj4iKfVzdktKoubnXoZJe/xc+JvQE80sJ8ouDMELZrLbQjoerzhgwOZBe0edkdAuPoJ3PL57NTRKmeYS4w==",
+								"type": "text"
+							},
+							{
+								"key": "authType",
+								"value": "Admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"intractionType\":\"rejected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job/interaction-applay/67c03366d3b3841dbc846f28",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job",
+								"interaction-applay",
+								"67c03366d3b3841dbc846f28"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:7801",
+			"type": "default"
+		}
+	]
+}
