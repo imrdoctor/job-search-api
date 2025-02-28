@@ -49,7 +49,7 @@ export const generateDefaultCover = async (companyName) => {
     const dir = path.resolve("temp/generated");
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-    const filePath = path.resolve(dir, `cover_${Date.now()}.png`);
+    const filePath = path.resolve(dir, `cover_${Date.now() + 1 * 60 * 1000}.png`);
     fs.writeFileSync(filePath, canvas.toBuffer("image/png"));
 
     return filePath;

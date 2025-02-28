@@ -161,4 +161,25 @@ export const findCompanyDetails = (type = "exists") => {
     });
 };
 
+export const authorizationSocketIo = async (auth) => {
+    const {authorization , authType} = auth
+    if (!authorization)  return { message: 'Unauthorized', statusCode: 401 };
+    const sign = authType === defaultAuthTypes.Admin ? process.env.SIGNATURE_TOKEN_ADMIN : process.env.SIGNATURE_TOKEN_USE
+    const token = await verfyCryptedToken({ value: authorization, sign })
+    if (!token) {
+        return { message: 'Unauthorized', statusCode: 401 };
+   }
 
+    const user = await DBS.findById({
+        model: userModel,
+        id: token.id
+    })
+    if (!user) {
+        return { message: 'User Not Found', statusCode: 401 };
+    }
+    if (token.secret !== user.tokenSecret) {
+        return { message: 'Token is invalid', statusCode: 401 };
+    }
+    delete user.tokenSecret;
+    return user
+}

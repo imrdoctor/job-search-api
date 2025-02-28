@@ -34,7 +34,7 @@ export const generateDefaultLogo = async (companyName) => {
     const dir = path.resolve("temp/generated");
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-    const filePath = path.resolve(dir, `logo_${Date.now() + 2 * 60 * 1000}.png`);
+    const filePath = path.resolve(dir, `logo_${Date.now() + 1 * 60 * 1000}.png`);
     fs.writeFileSync(filePath, canvas.toBuffer("image/png"));
 
     return filePath;

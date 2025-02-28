@@ -1,7 +1,9 @@
+import { io } from "../../../index.js";
 import * as DBS from "../../DB/dbService.js";
 import applicationModel, { APPLICATION_STATUS } from "../../DB/models/application/application.js";
 import companyModel from "../../DB/models/company/company.model.js";
 import jobModel from "../../DB/models/job/job.model.js";
+import { connectionUser } from "../../DB/models/user/user.model.js";
 import cloudinary from "../../utils/cloudinary/index.js";
 import { asyncHandler, eventEmitter, generateDefaultLogo } from "../../utils/utils.js";
 export const addJob = asyncHandler(async (req, res, next) => {
@@ -87,7 +89,6 @@ export const updateJob = asyncHandler(async (req, res, next) => {
 
     return res.status(200).json({ message: "Job updated successfully" });
 });
-
 export const deleteJob = asyncHandler(async (req, res, next) => {
     const { jobId } = req.params;
     const user = req.user;
@@ -122,7 +123,6 @@ export const deleteJob = asyncHandler(async (req, res, next) => {
 
     return res.status(200).json({ message: "Job deleted successfully" });
 });
-
 export const getAllCompanyJobs = asyncHandler(async (req, res, next) => {
     const { companyId } = req.params;
     let { jobId, companyName, sort = "-createdAt", page, limit } = req.query;
@@ -180,7 +180,6 @@ export const getAllCompanyJobs = asyncHandler(async (req, res, next) => {
         jobs,
     });
 });
-
 export const getAlljobs = asyncHandler(async (req, res, next) => {
     let {
         sort = "createdAt",
@@ -250,20 +249,12 @@ export const applyJob = asyncHandler(async (req, res, next) => {
             new Error("Crated Company not found", { cause: { status: 403 } })
         );
     }
-    const isOwnerOrHR =
-        company.createdBy.toString() === user._id.toString() ||
-        company.hrIds.some((hrId) => hrId.toString() === user._id.toString());
-    if (isOwnerOrHR)
-        return next(
-            new Error("Nice Try! You Arleady work at this company", {
-                cause: { status: 403 },
-            })
-        );
+    const isOwnerOrHR = company.createdBy.toString() === user._id.toString() || company.hrIds.some((hrId) => hrId.toString() === user._id.toString());
+    // if (isOwnerOrHR) return next( new Error("Nice Try! You Arleady work at this company", { cause: { status: 403 }, }));
     const cv = await cloudinary.uploader.upload(req.file.path, {
         folder: "jobSearch/application/cv",
         public_id: `${req.user._id}_${jobId}`,
     });
-
     const newApplication = await DBS.create({
         model: applicationModel,
         query: {
@@ -273,11 +264,26 @@ export const applyJob = asyncHandler(async (req, res, next) => {
             "userCV.public_id": cv.public_id,
         },
     });
+    const allUserIds = [...company.HRs.map(hr => hr._id.toString()), company.createdBy._id.toString()];
+    const connectedUsers = [...connectionUser.values()].map(id => id.toString());
+    const onlineUsers = allUserIds.filter(userId => connectedUsers.includes(userId));
+    if (onlineUsers.length > 0) {
+        onlineUsers.forEach(userId => {
+            const socketEntry = [...connectionUser.entries()].find(([socketId, uid]) => uid.toString() === userId);
+            if (socketEntry) {
+                const [socketId] = socketEntry; // Extract socketId
+                io.to(socketId).emit("notification", { message: "You have a new notification!" });
+            }
+        });
+    } else {
+        console.log("⚠ No online HRs/owners to notify.");
+    }
+    
+    
     return res
         .status(200)
         .json({ msg: " Done Send Your Application ", data: newApplication });
 });
-
 export const intractionApplay = asyncHandler(async (req, res, next) => {
     const { intractionType } = req.body;
     const { applicationId } = req.params;
