@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">MyApp</h1>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar"></div>
+                <span id="user"></span>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="chat-wrapper">
+        <!-- Sidebar with Users -->
+        <div class="users-list">
+            <h3>🟢 Online Users</h3>
+            <ul id="users"></ul>
+            <button onclick="goHome()" class="home-btn">🏠 Back to Home</button>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-container">
+            <h2>💬 Chat Room</h2>
+
+            <p id="selectedUser">👤 No user selected</p>
+
+            <div id="chatBox" class="chat-box"></div>
+
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type your message..." disabled>
+                <button onclick="sendMessage()" disabled>Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>

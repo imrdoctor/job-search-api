@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Notifications</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">MyApp</h1>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar"></div>
+                <span id="user"></span>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h2>Welcome, <span id="usernameDisplay"></span></h2>
+
+        <h3>Notifications:</h3>
+        <div id="notifications" class="notifications-list"></div>
+
+        <button onclick="goToChat()" class="chat-btn">💬 Go to Chat</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

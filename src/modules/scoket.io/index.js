@@ -4,14 +4,11 @@ import { authorizationSocketIo } from '../../middleware/auth.js';
 export function mainIo(io) {
     io.on("connection", async (socket) => {
         const auth = socket.handshake.auth;
-        const result = await authorizationSocketIo(auth);
-    console.log(result);
-    
+        const result = await authorizationSocketIo(auth);    
         if (result.statusCode !== 200) {
             console.log(chalk.red(`❌ Connection refused: ${result.message}`));
             return socket.disconnect();
         }
-    
         const user = result.user;
         connectionUser.set(socket.id, user._id);
         
