@@ -116,12 +116,10 @@ export function mainIo(io) {
 
         console.log(chalk.green("🟢 User connected: " + socket.id));
 
-        // 🟢 **الاستماع إلى الرسائل**
         socket.on("sendMessage", async (data) => {
             try {
                 const { text, senderId, senderName, receiverId } = data;
 
-                // ✅ **حفظ الرسالة في قاعدة البيانات**
                 let chat = await chatModel.findOne({
                     $or: [
                         { senderId, receiverId },
@@ -137,7 +135,6 @@ export function mainIo(io) {
                 chat.messages.push(newMessage);
                 await chat.save();
 
-                // ✅ **إرسال الرسالة للمستلم إذا كان متصلًا**
                 const receiverSocketId = [...connectionUser.entries()]
                     .find(([_, id]) => id.toString() === receiverId)?.[0];
 
