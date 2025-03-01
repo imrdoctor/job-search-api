@@ -53,7 +53,9 @@ async function fetchUsers() {
         console.error("Error fetching users:", error);
     }
 }
-
+function goHome() {
+    window.location.href = "home.html"; // التوجيه إلى home.html
+}
 // === Fetch Messages ===
 async function fetchMessages(userId) {
     try {
@@ -164,7 +166,3 @@ function logout() {
 
 // === Initialize ===
 document.addEventListener("DOMContentLoaded", fetchUsers);
-
-function goHome() {
-    window.location.href = "home.html"; // التوجيه إلى home.html
-}
