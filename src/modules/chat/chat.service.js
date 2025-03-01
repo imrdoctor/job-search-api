@@ -153,7 +153,6 @@ export function mainIo(io) {
             }
         });
 
-        // 🛑 **التعامل مع قطع الاتصال**
         socket.on("disconnect", () => {
             console.log(chalk.red("🔴 User disconnected: " + socket.id));
             connectionUser.delete(socket.id);
