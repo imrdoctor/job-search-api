@@ -3,7 +3,7 @@ const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
 const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-if (!token || !role || !userInfo || !userInfo.id) {
+if (!token || !role || !userInfo) {
     window.location.href = "index.html";
 } else {
     document.getElementById("user").textContent = userInfo.username;
@@ -29,12 +29,17 @@ async function fetchUsers() {
                 "authtype": role === "admin" ? "Admin" : "Bearer"
             }
         });
+
         if (!response.ok) throw new Error("Failed to fetch users");
+
         const data = await response.json();
-        if (!Array.isArray(data.data)) throw new Error("Invalid users data");
-        
+        console.log("API Response:", data);
+
+        if (!Array.isArray(data.data)) throw new Error("Users data is not an array");
+
         const usersList = document.getElementById("users");
         usersList.innerHTML = "";
+
         data.data.forEach(user => {
             if (user._id !== userInfo.id) {
                 const li = document.createElement("li");
@@ -48,7 +53,9 @@ async function fetchUsers() {
         console.error("Error fetching users:", error);
     }
 }
-
+function goHome() {
+    window.location.href = "home.html"; // التوجيه إلى home.html
+}
 // === Fetch Messages ===
 async function fetchMessages(userId) {
     try {
@@ -59,13 +66,17 @@ async function fetchMessages(userId) {
                 "authtype": role === "admin" ? "Admin" : "Bearer"
             }
         });
+
         if (!response.ok) throw new Error("Failed to fetch messages");
+
         const data = await response.json();
-        
+        console.log("Chat History:", data);
+
         const chatBox = document.getElementById("chatBox");
         chatBox.innerHTML = "";
+
         data.messages.forEach(msg => {
-            displayMessage(msg.message, msg.senderId === userInfo.id ? "outgoing" : "incoming", msg.senderName || "Unknown");
+            displayMessage(msg.message, msg.senderId === userInfo.id ? "outgoing" : "incoming", msg.senderId);
         });
     } catch (error) {
         console.error("Error fetching messages:", error);
@@ -78,6 +89,7 @@ function selectUser(user) {
     document.getElementById("selectedUser").textContent = `👤 Chatting with: ${user.firstName} ${user.lastName}`;
     document.getElementById("messageInput").disabled = false;
     document.querySelector(".chat-input button").disabled = false;
+
     fetchMessages(selectedUserId);
 }
 
@@ -87,20 +99,23 @@ function sendMessage() {
         alert("❌ Please select a user first.");
         return;
     }
+
     const messageInput = document.getElementById("messageInput");
     const message = messageInput.value.trim();
+
     if (!message) {
         alert("❌ Message cannot be empty.");
         return;
     }
+
     try {
-        const msgData = {
+        socket.emit("sendMessage", {
             text: message,
-            senderId: userInfo.id,
+            senderId: userInfo.userId,
             senderName: userInfo.username,
             receiverId: selectedUserId
-        };
-        socket.emit("sendMessage", msgData);
+        });
+
         displayMessage(message, "outgoing", "You");
         messageInput.value = "";
     } catch (error) {
@@ -112,7 +127,7 @@ function sendMessage() {
 // === Receive Messages ===
 socket.on("receiveMessage", (data) => {
     if (data.receiverId === userInfo.id || data.senderId === userInfo.id) {
-        displayMessage(data.text, data.senderId === userInfo.id ? "outgoing" : "incoming", data.senderName || "Unknown");
+        displayMessage(data.text, data.senderId === userInfo.id ? "outgoing" : "incoming", data.senderName);
     }
 });
 
@@ -120,16 +135,26 @@ socket.on("receiveMessage", (data) => {
 function displayMessage(message, type, senderName) {
     const chatBox = document.getElementById("chatBox");
     const messageDiv = document.createElement("div");
+
     messageDiv.classList.add("message", type);
     messageDiv.innerHTML = `<strong>${senderName}:</strong> ${message}`;
+
     chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    chatBox.scrollTop = chatBox.scrollHeight; // تمرير تلقائي إلى آخر رسالة
 }
 
 // === Handle Socket Events ===
-socket.on("connect", () => console.log("✅ Connected to WebSocket Server"));
-socket.on("disconnect", () => console.log("❌ Disconnected from WebSocket Server"));
-socket.on("error", (error) => console.error("❌ WebSocket Error:", error));
+socket.on("connect", () => {
+    console.log("✅ Connected to WebSocket Server");
+});
+
+socket.on("disconnect", () => {
+    console.log("❌ Disconnected from WebSocket Server");
+});
+
+socket.on("error", (error) => {
+    console.error("❌ WebSocket Error:", error);
+});
 
 // === Logout Function ===
 function logout() {
@@ -141,7 +166,3 @@ function logout() {
 
 // === Initialize ===
 document.addEventListener("DOMContentLoaded", fetchUsers);
-
-function goHome() {
-    window.location.href = "home.html";
-}

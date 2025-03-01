@@ -119,25 +119,30 @@ export function mainIo(io) {
         socket.on("sendMessage", async (data) => {
             try {
                 const { text, senderId, senderName, receiverId } = data;
-
+        
+                if (!senderId) {
+                    console.error("❌ senderId is missing in sendMessage event");
+                    return;
+                }
+        
                 let chat = await chatModel.findOne({
                     $or: [
                         { senderId, receiverId },
                         { senderId: receiverId, receiverId: senderId }
                     ]
                 });
-
+        
                 if (!chat) {
                     chat = new chatModel({ senderId, receiverId, messages: [] });
                 }
-
+        
                 const newMessage = { senderId, message: text };
                 chat.messages.push(newMessage);
                 await chat.save();
-
+        
                 const receiverSocketId = [...connectionUser.entries()]
                     .find(([_, id]) => id.toString() === receiverId)?.[0];
-
+        
                 if (receiverSocketId) {
                     io.to(receiverSocketId).emit("receiveMessage", {
                         text,
@@ -146,12 +151,13 @@ export function mainIo(io) {
                         receiverId
                     });
                 }
-
-                console.log(chalk.blue(`📩 Message sent from ${senderId} to ${receiverId}: "${text}"`));
+        
+                console.log(`📩 Message sent from ${senderId} to ${receiverId}: "${text}"`);
             } catch (error) {
-                console.error(chalk.red("❌ Error saving message:"), error);
+                console.error("❌ Error saving message:", error);
             }
         });
+        
 
         socket.on("disconnect", () => {
             console.log(chalk.red("🔴 User disconnected: " + socket.id));
