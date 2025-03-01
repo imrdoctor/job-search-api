@@ -11,5 +11,4 @@ approotes(app,express)
 const BASE_URL = process.env.MODE == "DEV" ? process.env.Dev_baseUrl : process.env.Prod_baseUrl
 const httpServer = app.listen(port,()=> console.log(chalk.cyan(`URL : http://localhost:${port}` , `\nBase URL : ${BASE_URL}`)));
 export const io = new Server(httpServer, { cors: '*' })
-
 mainIo(io)

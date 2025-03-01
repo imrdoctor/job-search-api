@@ -134,7 +134,7 @@ export const tokenHeaderSchema = {
         "accept-encoding": joi.string().optional(),
         connection: joi.string().optional(),
         "content-length": joi.string().optional(),
-    }).unknown(false),
+    }).unknown(true),
 }
 export const getUserInfoSchema = {
     body:joi.object({

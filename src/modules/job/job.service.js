@@ -271,15 +271,13 @@ export const applyJob = asyncHandler(async (req, res, next) => {
         onlineUsers.forEach(userId => {
             const socketEntry = [...connectionUser.entries()].find(([socketId, uid]) => uid.toString() === userId);
             if (socketEntry) {
-                const [socketId] = socketEntry; // Extract socketId
-                io.to(socketId).emit("notification", { message: "You have a new notification!" });
+                const [socketId] = socketEntry; 
+                io.to(socketId).emit("notification", { message: "لديك اشعار تقديم جديد" });
             }
         });
     } else {
         console.log("⚠ No online HRs/owners to notify.");
     }
-    
-    
     return res
         .status(200)
         .json({ msg: " Done Send Your Application ", data: newApplication });
