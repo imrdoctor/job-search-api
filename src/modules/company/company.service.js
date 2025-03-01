@@ -1,6 +1,6 @@
 import { create } from "../../DB/dbService.js";
 import * as DBS from "../../DB/dbService.js";
-import applicationModel from "../../DB/models/application/application.js";
+import applicationModel from "../../DB/models/application/application.model.js";
 import companyModel from "../../DB/models/company/company.model.js";
 import jobModel from "../../DB/models/job/job.model.js";
 import userModel, { defaultRoles } from "../../DB/models/user/user.model.js";

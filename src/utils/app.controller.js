@@ -10,6 +10,7 @@ import { GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql"
 import companyController from "../modules/company/company.controller.js"
 import jobController from "../modules/job/job.controller.js"
 import {rateLimit} from 'express-rate-limit'
+import chatController from "../modules/chat/chat.controller.js"
 const limiter = rateLimit({
     windowMs: 1 * 60 * 1000, 
     max: 20, 
@@ -30,6 +31,7 @@ const approotes = async (app,express)=>{
      app.use("/user", userController);
      app.use("/company", companyController);
      app.use("/job", jobController);
+     app.use("/chat", chatController);
      app.use('/graphql', createHandler({ schema : graphSchema }));
      app.use("*", (req, res, next) => {
         return next(new Error(`invalid url ${req.originalUrl}`, { cause: { status: 404} }))

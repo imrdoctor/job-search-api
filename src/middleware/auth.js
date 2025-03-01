@@ -7,12 +7,11 @@ export const authorization = () => {
         const authorization = req.header('Authorization');
         const authType = req.header('authtype');
         if (!authorization) return next(new Error('Unauthorized', { cause: { status: 401 } }))
-        const sign = authType === defaultAuthTypes.Admin ? process.env.SIGNATURE_TOKEN_ADMIN : process.env.SIGNATURE_TOKEN_USE
+        const sign = authType === defaultAuthTypes.Admin ? process.env.SIGNATURE_TOKEN_ADMIN : process.env.SIGNATURE_TOKEN_USER        
         const token = await verfyCryptedToken({ value: authorization, sign })
         if (!token) {
             return next(new Error('Unauthorized', { cause: { status: 401 } }))
-        }
-
+        }        
         const user = await DBS.findById({
             model: userModel,
             id: token.id
@@ -166,7 +165,7 @@ export const authorizationSocketIo = async (auth) => {
     if (!authorization) {
         return { message: 'Unauthorized', statusCode: 401 };
     }
-    const sign = authType === defaultAuthTypes.Admin? process.env.SIGNATURE_TOKEN_ADMIN: process.env.SIGNATURE_TOKEN_USE;
+    const sign = authType === defaultAuthTypes.Admin? process.env.SIGNATURE_TOKEN_ADMIN: process.env.SIGNATURE_TOKEN_USER;
     const token = await verfyCryptedToken({ value: authorization, sign });
     if (!token) {
         return { message: 'Unauthorized', statusCode: 401 };

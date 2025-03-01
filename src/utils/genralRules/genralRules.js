@@ -2,7 +2,7 @@ import joi from "joi";
 import { Types } from "mongoose";
 import { defaultAuthTypes, defaultGenders, defaultRoles, verfyTypes } from "../../DB/models/user/user.model.js";
 import { defaultJobLocations, defaultSeniorityLevels, defaultWorkingTimes } from "../../DB/models/job/job.model.js";
-import { APPLICATION_STATUS } from "../../DB/models/application/application.js";
+import { APPLICATION_STATUS } from "../../DB/models/application/application.model.js";
 export const customId = (value, helper) => {
     let data = Types.ObjectId.isValid(value);
     return data ? value : helper.message("id is not a valid")

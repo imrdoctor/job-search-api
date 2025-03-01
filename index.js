@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import express  from "express"
 import approotes from './src/utils/app.controller.js'
 import { Server } from 'socket.io';
-import { mainIo } from './src/modules/scoket.io/index.js';
+import { mainIo } from './src/modules/chat/chat.service.js';
 const app = express()
 const port = process.env.PORT
 approotes(app,express)

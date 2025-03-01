@@ -1,6 +1,6 @@
 import { io } from "../../../index.js";
 import * as DBS from "../../DB/dbService.js";
-import applicationModel, { APPLICATION_STATUS } from "../../DB/models/application/application.js";
+import applicationModel, { APPLICATION_STATUS } from "../../DB/models/application/application.model.js";
 import companyModel from "../../DB/models/company/company.model.js";
 import jobModel from "../../DB/models/job/job.model.js";
 import { connectionUser } from "../../DB/models/user/user.model.js";
@@ -249,7 +249,7 @@ export const applyJob = asyncHandler(async (req, res, next) => {
             new Error("Crated Company not found", { cause: { status: 403 } })
         );
     }
-    const isOwnerOrHR = company.createdBy.toString() === user._id.toString() || company.hrIds.some((hrId) => hrId.toString() === user._id.toString());
+    const isOwnerOrHR = company.createdBy.toString() === user._id.toString() || company.hrIds?.some((hrId) => hrId.toString() === user._id.toString());
     // if (isOwnerOrHR) return next( new Error("Nice Try! You Arleady work at this company", { cause: { status: 403 }, }));
     const cv = await cloudinary.uploader.upload(req.file.path, {
         folder: "jobSearch/application/cv",
