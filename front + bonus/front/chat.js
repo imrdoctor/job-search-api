@@ -164,3 +164,7 @@ function logout() {
 
 // === Initialize ===
 document.addEventListener("DOMContentLoaded", fetchUsers);
+
+function goHome() {
+    window.location.href = "home.html"; // التوجيه إلى home.html
+}
