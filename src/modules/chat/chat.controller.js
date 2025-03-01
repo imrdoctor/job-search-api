@@ -7,9 +7,13 @@ import { fileTypes, multerCloud } from "../../middleware/multer.js";
 const chatController = Router();
 chatController.get(
   "/users",
-  // validation(CV.addjobSchema),
   ATH.authorization(),
   CS.getChatUsers
+);
+chatController.get(
+  "/messages/:receiverId",
+  ATH.authorization(),
+  CS.getChatHistory
 );
 export default chatController;
 

@@ -19,6 +19,7 @@ const socket = io(baseURL, {
 
 let selectedUserId = null;
 
+// === Fetch Users ===
 async function fetchUsers() {
     try {
         const response = await fetch(`${baseURL}/chat/users`, {
@@ -32,7 +33,7 @@ async function fetchUsers() {
         if (!response.ok) throw new Error("Failed to fetch users");
 
         const data = await response.json();
-        console.log("API Response:", data); 
+        console.log("API Response:", data);
 
         if (!Array.isArray(data.data)) throw new Error("Users data is not an array");
 
@@ -53,15 +54,45 @@ async function fetchUsers() {
     }
 }
 
+// === Fetch Messages ===
+async function fetchMessages(userId) {
+    try {
+        const response = await fetch(`${baseURL}/chat/messages/${userId}`, {
+            method: "GET",
+            headers: {
+                "authorization": token,
+                "authtype": role === "admin" ? "Admin" : "Bearer"
+            }
+        });
 
-function selectUser(user) {
-    selectedUserId = user._id;
-    document.getElementById("selectedUser").textContent = `👤 Chatting with: ${user.username}`;
-    document.getElementById("messageInput").disabled = false;
-    document.querySelector(".chat-input button").disabled = false;
+        if (!response.ok) throw new Error("Failed to fetch messages");
+
+        const data = await response.json();
+        console.log("Chat History:", data);
+
+        const chatBox = document.getElementById("chatBox");
+        chatBox.innerHTML = "";
+
+        data.messages.forEach(msg => {
+            displayMessage(msg.message, msg.senderId === userInfo.id ? "outgoing" : "incoming", msg.senderId);
+        });
+    } catch (error) {
+        console.error("Error fetching messages:", error);
+    }
 }
 
-async function sendMessage() {
+// === Select User for Chat ===
+function selectUser(user) {
+    selectedUserId = user._id;
+    document.getElementById("selectedUser").textContent = `👤 Chatting with: ${user.firstName} ${user.lastName}`;
+    document.getElementById("messageInput").disabled = false;
+    document.querySelector(".chat-input button").disabled = false;
+
+    fetchMessages(selectedUserId);
+}
+
+// === Send Message ===
+function sendMessage() {
     if (!selectedUserId) {
         alert("❌ Please select a user first.");
         return;
@@ -75,26 +106,15 @@ async function sendMessage() {
         return;
     }
 
-    const storedUserInfo = localStorage.getItem("userInfo");
-    if (!storedUserInfo) {
-        alert("❌ User information not found. Please log in again.");
-        return;
-    }
-
-    const userInfo = JSON.parse(storedUserInfo);
-    if (!userInfo.userId) {
-        alert("❌ User ID is missing. Please log in again.");
-        return;
-    }
-
     try {
         socket.emit("sendMessage", {
             text: message,
-            senderId: userInfo.userId, 
+            senderId: userInfo.id,
             senderName: userInfo.username,
             receiverId: selectedUserId
         });
 
+        displayMessage(message, "outgoing", "You");
         messageInput.value = "";
     } catch (error) {
         console.error("❌ Error sending message:", error);
@@ -102,16 +122,45 @@ async function sendMessage() {
     }
 }
 
-
-
+// === Receive Messages ===
 socket.on("receiveMessage", (data) => {
     if (data.receiverId === userInfo.id || data.senderId === userInfo.id) {
-        alert(`New message from ${data.senderName}: ${data.text}`);
+        displayMessage(data.text, data.senderId === userInfo.id ? "outgoing" : "incoming", data.senderName);
     }
 });
 
-function goHome() {
-    window.location.href = "home.html";
+// === Display Message in Chat Box ===
+function displayMessage(message, type, senderName) {
+    const chatBox = document.getElementById("chatBox");
+    const messageDiv = document.createElement("div");
+
+    messageDiv.classList.add("message", type);
+    messageDiv.innerHTML = `<strong>${senderName}:</strong> ${message}`;
+
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight; // تمرير تلقائي إلى آخر رسالة
 }
 
+// === Handle Socket Events ===
+socket.on("connect", () => {
+    console.log("✅ Connected to WebSocket Server");
+});
+
+socket.on("disconnect", () => {
+    console.log("❌ Disconnected from WebSocket Server");
+});
+
+socket.on("error", (error) => {
+    console.error("❌ WebSocket Error:", error);
+});
+
+// === Logout Function ===
+function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("userInfo");
+    window.location.href = "index.html";
+}
+
+// === Initialize ===
 document.addEventListener("DOMContentLoaded", fetchUsers);

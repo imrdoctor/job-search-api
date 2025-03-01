@@ -12,45 +12,49 @@ import { connectionUser } from '../../DB/models/user/user.model.js';
 import { authorizationSocketIo } from '../../middleware/auth.js';
 
 export const getChatUsers = asyncHandler(async (req, res, next) => {
-    const user = req.user
-    const userCompanys = await DBS.find(
-        {
-            model : companyModel,
-            filter:{
-                $or: [
-                    { createdBy: req.user._id },  // إذا كان المستخدم Owner
-                    { HRs: req.user._id }         // إذا كان المستخدم HR
-                ]
-            }
+    const userId = req.user._id;
+
+    const userCompanys = await DBS.find({
+        model: companyModel,
+        filter: {
+            $or: [
+                { createdBy: userId },
+                { HRs: userId }
+            ]
         }
-    );
-    const companyIds = userCompanys.map(company => company._id); 
+    });
+
+    const companyIds = userCompanys.map(company => company._id);
+
     const jobs = await DBS.find({
         model: jobModel,
         filter: {
-            companyId: { $in: companyIds }  
+            companyId: { $in: companyIds }
         },
     });
+
     const jobIds = jobs.map(job => job._id.toString());
+
     const applications = await DBS.find({
         model: applicationModel,
         filter: {
-            jobId: { $in: jobIds }, 
-            status: "accepted"     
+            jobId: { $in: jobIds },
+            status: "accepted"
         },
         populate: {
-            path: "userId", 
-            select: "firstName lastName email phone gender profilePic" 
+            path: "userId",
+            select: "firstName lastName email phone gender profilePic"
         }
-    });    
+    });
 
     const acceptedUsers = applications.map(app => app.userId);
+
     const chats = await DBS.find({
         model: chatModel,
         filter: {
             $or: [
-                { senderId: req.user._id },
-                { receiverId: req.user._id }
+                { senderId: userId },
+                { receiverId: userId }
             ]
         },
         populate: [
@@ -58,12 +62,42 @@ export const getChatUsers = asyncHandler(async (req, res, next) => {
             { path: "receiverId", select: "firstName lastName email phone gender profilePic" }
         ]
     });
+
     const chatUsers = chats.flatMap(chat => [chat.senderId, chat.receiverId]);
+
     const allUsers = [...acceptedUsers, ...chatUsers];
-    const users = Array.from(new Map(allUsers.map(user => [user._id.toString(), user])).values());
+
+    const users = Array.from(new Map(
+        allUsers
+            .filter(user => user._id.toString() !== userId.toString())
+            .map(user => [user._id.toString(), user])
+    ).values());
 
     return res.json({ message: "Users found", data: users });
-    
+});
+
+export const getChatHistory = asyncHandler(async (req, res, next) => {
+    const { receiverId } = req.params;
+    const senderId = req.user._id; 
+    if (!receiverId) {
+        return res.status(400).json({ message: "Receiver ID is required." });
+    }
+
+    const chat = await chatModel.findOne({
+        $or: [
+            { senderId, receiverId },
+            { senderId: receiverId, receiverId: senderId }
+        ]
+    }).populate([
+        { path: "senderId", select: "firstName lastName profilePic" },
+        { path: "receiverId", select: "firstName lastName profilePic" }
+    ]);
+
+    if (!chat) {
+        return res.status(200).json({ message: "No chat history found.", messages: [] });
+    }
+
+    return res.status(200).json({ message: "Chat history retrieved.", messages: chat.messages });
 });
 
 
